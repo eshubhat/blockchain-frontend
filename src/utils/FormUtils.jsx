@@ -1,6 +1,6 @@
 export const handleFormSubmit = async (formData) => {
     try {
-      const response = await fetch('http://localhost:8080/api/fileUpload', {
+      const response = await fetch(`${import.meta.env.APP_URL}/api/fileUpload`, {
         method: 'POST',
         body: formData
       })
