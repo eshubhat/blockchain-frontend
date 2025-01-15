@@ -19,7 +19,18 @@ const NotificationBell = () => {
 
   const fetchNotifications = async () => {
     try {
-      console.log(currentAccount);
+      if (!import.meta.env.VITE_APP_URL) {
+        console.error("API URL is not defined in the environment variables.");
+        return;
+      }
+
+      if (!currentAccount) {
+        console.error("currentAccount is not defined.");
+        return;
+      }
+
+      console.log("Fetching notifications for account:", currentAccount);
+
       const response = await fetch(
         `${import.meta.env.VITE_APP_URL}/notifications/${currentAccount}`,
         {
@@ -28,14 +39,16 @@ const NotificationBell = () => {
       );
 
       if (!response.ok) {
-        throw new Error("Network response was not ok");
+        throw new Error(`Network response was not ok: ${response.statusText}`);
       }
 
       const { success, data } = await response.json();
+
       if (success) {
         setNotifications(data);
+        console.log("Notifications fetched successfully:", data);
       } else {
-        console.error("Failed to fetch notifications.");
+        console.error("Failed to fetch notifications. Response:", data);
       }
     } catch (error) {
       console.error("Error fetching notifications:", error);
@@ -59,7 +72,9 @@ const NotificationBell = () => {
   const markAsNotified = async (requestId) => {
     try {
       const response = await fetch(
-        `${import.meta.env.VITE_APP_URL}/notifications/${requestId}/${currentAccount}`,
+        `${
+          import.meta.env.VITE_APP_URL
+        }/notifications/${requestId}/${currentAccount}`,
         {
           method: "PUT",
           headers: {
@@ -93,7 +108,9 @@ const NotificationBell = () => {
       console.log("Approval successful:", receipt);
 
       const response = await fetch(
-        `${import.meta.env.VITE_APP_URL}/notifications/${requestId}/${currentAccount}`,
+        `${
+          import.meta.env.VITE_APP_URL
+        }/notifications/${requestId}/${currentAccount}`,
         {
           method: "PUT",
           headers: {
