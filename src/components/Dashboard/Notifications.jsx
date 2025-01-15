@@ -30,6 +30,7 @@ const NotificationBell = () => {
       }
 
       console.log("Fetching notifications for account:", currentAccount);
+      console.log("API URL:", import.meta.env.VITE_APP_URL);
 
       const response = await fetch(
         `${import.meta.env.VITE_APP_URL}/notifications/${currentAccount}`,
