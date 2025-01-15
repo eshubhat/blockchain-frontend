@@ -21,7 +21,7 @@ const NotificationBell = () => {
     try {
       console.log(process.env.APP_URL);
       const response = await fetch(
-        `${process.env.APP_URL}/notifications/${currentAccount}`,
+        `${import.meta.env.VITE_APP_URL}/notifications/${currentAccount}`,
         {
           method: "GET",
           headers: {
@@ -62,7 +62,7 @@ const NotificationBell = () => {
   const markAsNotified = async (requestId) => {
     try {
       const response = await fetch(
-        `${process.env.APP_URL}/notifications/${requestId}/${currentAccount}`,
+        `${import.meta.env.VITE_APP_URL}/notifications/${requestId}/${currentAccount}`,
         {
           method: "PUT",
           headers: {
@@ -96,7 +96,7 @@ const NotificationBell = () => {
       console.log("Approval successful:", receipt);
 
       const response = await fetch(
-        `${process.env.APP_URL}/notifications/${requestId}/${currentAccount}`,
+        `${import.meta.env.VITE_APP_URL}/notifications/${requestId}/${currentAccount}`,
         {
           method: "PUT",
           headers: {
