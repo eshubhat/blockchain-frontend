@@ -19,7 +19,7 @@ const NotificationBell = () => {
 
   const fetchNotifications = async () => {
     try {
-      console.log(process.env.APP_URL);
+      console.log(process.meta.env.APP_URL);
       const response = await fetch(
         `${import.meta.env.VITE_APP_URL}/notifications/${currentAccount}`,
         {
