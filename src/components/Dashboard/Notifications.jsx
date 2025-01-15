@@ -19,9 +19,9 @@ const NotificationBell = () => {
 
   const fetchNotifications = async () => {
     try {
-      console.log(import.meta.env.APP_URL)
+      console.log(process.env.APP_URL);
       const response = await fetch(
-        `${import.meta.env.APP_URL}/notifications/${currentAccount}`,
+        `${process.env.APP_URL}/notifications/${currentAccount}`,
         {
           method: "GET",
           headers: {
@@ -62,7 +62,7 @@ const NotificationBell = () => {
   const markAsNotified = async (requestId) => {
     try {
       const response = await fetch(
-        `http://localhost:8080/notifications/${requestId}/${currentAccount}`,
+        `${process.env.APP_URL}/notifications/${requestId}/${currentAccount}`,
         {
           method: "PUT",
           headers: {
@@ -96,7 +96,7 @@ const NotificationBell = () => {
       console.log("Approval successful:", receipt);
 
       const response = await fetch(
-        `http://localhost:8080/notifications/${requestId}/${currentAccount}`,
+        `${process.env.APP_URL}/notifications/${requestId}/${currentAccount}`,
         {
           method: "PUT",
           headers: {
