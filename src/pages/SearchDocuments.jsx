@@ -67,20 +67,20 @@ const SearchDocuments = () => {
   const downloadDocument = async (ipfsHash) => {
     try {
       console.log(new String(ipfsHash));
-  
+
       // Convert the IPFS hash to a gateway URL
       const ipfsUrl = await pinata.gateways.convert(`${ipfsHash}`);
       console.log(ipfsUrl);
-  
+
       // Fetch the content from IPFS
       const response = await fetch(ipfsUrl);
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
-  
+
       // Get the blob from the response
       const blob = await response.blob();
-  
+
       // Create a download URL from the blob
       const url = window.URL.createObjectURL(blob);
       const a = document.createElement("a");
@@ -88,11 +88,11 @@ const SearchDocuments = () => {
       a.download = `pinata-download`; // You can customize the filename here
       document.body.appendChild(a);
       a.click();
-  
+
       // Clean up
       window.URL.revokeObjectURL(url);
       document.body.removeChild(a);
-  
+
       console.log("File downloaded successfully");
     } catch (error) {
       console.error("Failed to fetch data from IPFS:", error);
@@ -102,7 +102,6 @@ const SearchDocuments = () => {
       }
     }
   };
-  
 
   const openDialog = (documentId) => {
     console.log(documentId);
@@ -122,6 +121,7 @@ const SearchDocuments = () => {
       const hash = await requestAccess(selectedDocumentId, purpose);
       console.log(hash);
       setIsDialogOpen(false);
+
       alert("Access request sent successfully!");
     } catch (err) {
       alert("Error requesting access: " + err.message);

@@ -19,14 +19,11 @@ const NotificationBell = () => {
 
   const fetchNotifications = async () => {
     try {
-      console.log(import.meta.env.APP_URL);
+      console.log(currentAccount);
       const response = await fetch(
         `${import.meta.env.VITE_APP_URL}/notifications/${currentAccount}`,
         {
           method: "GET",
-          headers: {
-            authorization: `Bearer ${localStorage.getItem("id")}`,
-          },
         }
       );
 
