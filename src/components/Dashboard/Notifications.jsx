@@ -20,7 +20,7 @@ const NotificationBell = () => {
   const fetchNotifications = async () => {
     try {
       const response = await fetch(
-        `http://localhost:8080/notifications/${currentAccount}`,
+        `${import.meta.env.APP_URL}/notifications/${currentAccount}`,
         {
           method: "GET",
           headers: {

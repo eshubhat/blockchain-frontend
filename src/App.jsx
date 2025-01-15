@@ -16,11 +16,11 @@ function App() {
         <ThemeProvider theme={theme}>
           <BrowserRouter>
             <Routes>
-              <Route path="/" element={<Auth />} />
+              <Route path="/" element={<Dashboard />} />
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/fileUpload" element={<PatientFileUploadForm />} />
               <Route path="/searchDocuments" element={<SearchDocuments />} />
-              <Route path="*" element={<Auth />} />
+              <Route path="*" element={<Dashboard />} />
             </Routes>
           </BrowserRouter>
         </ThemeProvider>
