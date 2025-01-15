@@ -19,6 +19,7 @@ const NotificationBell = () => {
 
   const fetchNotifications = async () => {
     try {
+      console.log(import.meta.env.APP_URL)
       const response = await fetch(
         `${import.meta.env.APP_URL}/notifications/${currentAccount}`,
         {
